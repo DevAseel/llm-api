@@ -1,0 +1,19 @@
+version: "3.7"
+
+networks:
+  api-net:
+    driver: bridge
+
+services:
+  llm-api:
+    image: llm-api
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    container_name: llm-api
+    ports:
+      - 8000:8000
+    networks:
+      - api-net
+    volumes:
+      - ./model:/usr/src/app/model
